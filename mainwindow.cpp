@@ -21,10 +21,11 @@ QString getHashSum (QString path, QCryptographicHash::Algorithm algorithm)
         QFile file (path);
         if (!file.open (QIODevice::ReadOnly)) throw;
         QByteArray fileData = file.readAll();
+        file.close();
         QByteArray hashData = QCryptographicHash::hash (fileData, algorithm);
         return pref + hashData.toHex();
     } catch (...) {
-
+    
     }
     return "";
 }
